@@ -28,17 +28,17 @@ def get_all_projects_view(request):
     return Response(serializer.data)
 
 
-#TODO: check wether fields are correct.
 @api_view(['GET'])
 def send_message_view(request):
     contacts = request.query_params.get('contacts')
     name = request.query_params.get('name')
     message = request.query_params.get('message')
     if (contacts is None) or (name is None) or (message is None):
-        return Response({"error": "One of required field is empty."}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"error": "contacts, name or message are missing."}, status=status.HTTP_400_BAD_REQUEST)
     serializer = MessageSerializer(data={"contacts": contacts, "name": name, "message": message})
     if not serializer.is_valid():
-        return Response({"error": "Fields was not correctly filled."}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"error": "Incorrect fields."}, status=status.HTTP_400_BAD_REQUEST)
+    # return Response(None, status=status.HTTP_404_NOT_FOUND)
     serializer.save()
     return Response(1, status=status.HTTP_201_CREATED)
 
