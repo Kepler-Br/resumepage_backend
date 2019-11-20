@@ -23,4 +23,4 @@ class MessageSerializer(serializers.ModelSerializer):
 class ProjectShortSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProjectModel
-        fields = ['name', 'id']
+        fields = ['name', 'id', 'titleImage']
