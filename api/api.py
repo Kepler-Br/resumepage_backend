@@ -3,8 +3,8 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from api.serializers import ProjectSerializer, ImageSerializer, ProjectShortSerializer, MessageSerializer
-from api.models import ProjectModel, ImageModel
+from api.serializers import ProjectSerializer, ImageSerializer, ProjectShortSerializer, MessageSerializer, RenderSerializer
+from api.models import ProjectModel, ImageModel, RenderModel
 from rest_framework import status
 
 User = get_user_model()
@@ -53,4 +53,10 @@ def get_image_view(request):
     except ObjectDoesNotExist as e:
         return Response({"error": "Image with this id does not exist."})
     serializer = ImageSerializer(image)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_render_all_view(request):
+    serializer = RenderSerializer(RenderModel.objects.all(), many=True)
     return Response(serializer.data)

@@ -15,6 +15,10 @@ class ImageModel(models.Model):
         return self.url
 
 
+class RenderModel(models.Model):
+    image = models.ForeignKey(ImageModel, on_delete=models.CASCADE)
+
+
 class MessageModel(models.Model):
     contacts = models.CharField(max_length=100, blank=False)
     name = models.CharField(max_length=100, blank=False)
