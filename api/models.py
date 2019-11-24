@@ -19,6 +19,11 @@ class RenderModel(models.Model):
     image = models.ForeignKey(ImageModel, on_delete=models.CASCADE)
 
 
+class AboutModel(models.Model):
+    bodyRu = models.TextField()
+    bodyEn = models.TextField()
+
+
 class MessageModel(models.Model):
     contacts = models.CharField(max_length=100, blank=False)
     name = models.CharField(max_length=100, blank=False)

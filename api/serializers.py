@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import ImageModel, ProjectModel, MessageModel, RenderModel
+from api.models import ImageModel, ProjectModel, MessageModel, RenderModel, AboutModel
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -31,3 +31,9 @@ class ProjectShortSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProjectModel
         fields = ['name', 'id', 'titleImage']
+
+
+class AboutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AboutModel
+        fields = ['bodyRu', 'bodyEn']
